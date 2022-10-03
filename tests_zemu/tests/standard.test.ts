@@ -16,7 +16,7 @@
 
 import Zemu from '@zondax/zemu'
 // @ts-ignore
-import CosmosApp from '../ledger-cosmos-js'
+import DecimalApp from 'ledger-decimal-js'
 import { DEFAULT_OPTIONS, DEVICE_MODELS, example_tx_str_basic, example_tx_str_basic2 } from './common'
 
 // @ts-ignore
@@ -55,7 +55,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
       const resp = await app.getVersion()
 
       console.log(resp)
@@ -75,7 +75,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 60, 0, 0, 0]
@@ -100,7 +100,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 60, 5, 0, 3]
@@ -117,7 +117,7 @@ describe('Standard', function () {
 
       expect(resp).toHaveProperty('bech32_address')
       expect(resp).toHaveProperty('compressed_pk')
-      
+
       console.log("=====================");
       console.log(resp.bech32_address)
 
@@ -132,7 +132,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       // Derivation path. First 3 items are automatically hardened!
       const path = [44, 60, 2147483647, 0, 4294967295]
@@ -150,7 +150,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       // Activate expert mode
       await sim.clickRight()
@@ -186,7 +186,7 @@ describe('Standard', function () {
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
 
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       const path = [44, 60, 0, 0, 0]
       const tx = JSON.stringify(example_tx_str_basic)
@@ -231,7 +231,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...DEFAULT_OPTIONS, model: m.name })
-      const app = new CosmosApp(sim.getTransport())
+      const app = new DecimalApp(sim.getTransport())
 
       const path = [44, 60, 0, 0, 0]
       const tx = JSON.stringify(example_tx_str_basic)

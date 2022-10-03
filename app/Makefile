@@ -74,6 +74,10 @@ endif
 
 APP_LOAD_PARAMS = --delete $(COMMON_LOAD_PARAMS) --path $(APPPATH)
 
+# Ledger: add the "Pending security review" disclaimer
+APP_LOAD_PARAMS += --tlvraw 9F:01
+DEFINES += HAVE_PENDING_REVIEW_SCREEN
+
 ifeq ($(TARGET_NAME),TARGET_NANOS)
 APP_LOAD_PARAMS += --appFlags 0x000
 APP_STACK_SIZE:=1444
@@ -229,7 +233,7 @@ dep/%.d: %.c Makefile
 
 .PHONY: listvariants
 listvariants:
-	@echo VARIANTS COIN ATOM
+	@echo VARIANTS COIN DEL
 
 .PHONY: version
 version:
